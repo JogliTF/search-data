@@ -1,0 +1,53 @@
+radar:
+  top_k_candidates: 20          # cuantos candidatos guardar por run
+  recency_hours: 72             # "viral hoy" = últimas N horas (ajustable)
+  cooldown_days: 10             # no repetir tema similar por N días
+  min_keyword_len: 3            # evita ruido tipo "el", "de"
+  max_topic_len: 90             # títulos de tema razonables
+
+sources:
+  enabled:
+    - youtube
+    - google_trends
+    # - tiktok  # lo activamos cuando tengamos proveedor estable
+
+regions_supported:
+  PE:
+    default_language: es
+    timezone: America/Lima
+  MX:
+    default_language: es
+    timezone: America/Mexico_City
+  ES:
+    default_language: es
+    timezone: Europe/Madrid
+  US_HISPANO:
+    default_language: es
+    timezone: America/New_York
+
+niches:
+  allowed:
+    - misterios_historia
+    - relatos_reddit
+    - curiosidades_ciencia
+    - crimenes_reales
+    - psicologia_humana
+
+scoring_weights:
+  momentum: 0.40
+  volume: 0.25
+  niche_fit: 0.25
+  saturation: 0.10
+
+thresholds:
+  # Proxies simples (se afinan luego)
+  saturation_max_similar_items: 30   # si hay demasiados similares, penaliza
+  min_candidate_score: 0.10          # candidatos debajo se descartan
+
+angle_generation:
+  angles_per_topic: 3
+  styles_allowed:
+    - suspenso
+    - cinico
+    - entusiasta
+  default_style: suspenso
